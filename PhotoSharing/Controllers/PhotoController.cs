@@ -49,12 +49,18 @@ namespace PhotoSharingApplication.Controllers
         // POST: /Photo/Create
 
         [HttpPost]
-        public ActionResult Create(Photo photo)
+        public ActionResult Create(PhotoEditModel photo)
         {
             if (ModelState.IsValid)
             {
-           //     db.Photos.Add(photo);
-           //     db.SaveChanges();
+                var photo2 = Mapper.Map<Photo>(photo);
+
+                photo2.CreatedDate = DateTime.Now;
+                photo2.UserName = User.Identity.Name;
+
+                _rep.AddOrUpdatePhoto(photo2);
+                _rep.SaveChanges();
+
                 return RedirectToAction("Index");
             }
 
