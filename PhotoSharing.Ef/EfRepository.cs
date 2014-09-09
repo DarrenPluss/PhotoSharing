@@ -11,7 +11,7 @@ namespace PhotoSharing.Ef
     {
         PhotoSharingContext _db = new PhotoSharingContext();
 
-        PhotoDetails IPhotoRepository.PhotoById(int id)
+        PhotoDetails IPhotoRepository.PhotoDetailsById(int id)
         {
             var pd = _db.Photos.Where(p => p.PhotoID == id)
                 .Select(p => new PhotoDetails
@@ -42,6 +42,20 @@ namespace PhotoSharing.Ef
 
             return photos.Take(count).ToList();
      
+        }
+
+        List<PhotoDetails> IPhotoRepository.PhotosByTitle(string title)
+        {
+            var photos = _db.Photos.Where(p => p.Title.Contains(title)).Select(p => new PhotoDetails
+            {
+                PhotoID = p.PhotoID,
+                Title = p.Title,
+                Description = p.Description,
+                UserName = p.UserName,
+                CreatedDate = p.CreatedDate
+            });
+
+            return photos.ToList();
         }
 
         PhotoImage IPhotoRepository.PhotoImageById(int id)
@@ -84,5 +98,10 @@ namespace PhotoSharing.Ef
             if (_db != null)
                 _db.Dispose();
         }
-            }
+        
+        Photo IPhotoRepository.PhotoById(int id)
+        {
+            return _db.Photos.FirstOrDefault(p => p.PhotoID == id);
+        }
+    }
 }

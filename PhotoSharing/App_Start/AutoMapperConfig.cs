@@ -13,7 +13,10 @@ namespace PhotoSharing.App_Start
         public static void ConfigureMappings()
         {
             Mapper.CreateMap<PhotoDetails, PhotoDisplayModel>();
-            Mapper.CreateMap<PhotoEditModel, Photo>();      
+            Mapper.CreateMap<PhotoEditModel, Photo>();
+            Mapper.CreateMap<AdminPhotoEditModel, Photo>();
+            Mapper.CreateMap<PhotoDetails, PhotoEditModel>();
+            Mapper.CreateMap<PhotoDetails, AdminPhotoEditModel>();    
         }
     }
 }
