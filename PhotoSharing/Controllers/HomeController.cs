@@ -11,6 +11,8 @@ namespace PhotoSharing.Controllers
     {
         public ActionResult Test()
         {
+            throw new Exception();
+
             return File(new byte[] { 64, 65, 66, 67, 68, 69 }, "text/plain", "test.txt");
 
           /*  var photo = new Photo
