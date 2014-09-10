@@ -1,0 +1,10 @@
+﻿@model PhotoSharing.Models.PhotoDisplayModel
+
+<div>
+    <a href="@Url.Action("Details", "Photo", new { id = Model.PhotoID })">
+        <p>@Model.Title</p>
+        <img style="height:90px;width:90px" alt="@Model.Description" 
+                    src="@Url.Action("Image", "Photo", new { id = Model.PhotoID })" />
+        <p>@Model.Description</p>
+    </a>
+</div>

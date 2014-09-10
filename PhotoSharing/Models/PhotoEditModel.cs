@@ -8,6 +8,7 @@ namespace PhotoSharing.Models
 {
     public class PhotoEditModel
     {
+        [Key]
         public int PhotoID { get; set; }
         [Required]
         public string Title { get; set; }
@@ -18,6 +19,7 @@ namespace PhotoSharing.Models
 
     public class AdminPhotoEditModel
     {
+        [Key]
         public int PhotoID { get; set; }
         [Required]
         public string Title { get; set; }

@@ -170,9 +170,7 @@ namespace PhotoSharingApplication.Controllers
                 return RedirectToAction("Index");
             }
             return View(photo);
-        }
-
-   
+        }   
 
         //
         // POST: /Photo/Edit/5

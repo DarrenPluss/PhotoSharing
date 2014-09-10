@@ -22,10 +22,10 @@ namespace PhotoSharing.Filters
             foreach (var r in roleList)
             {
                 if (controllerContext.HttpContext.User.IsInRole(r))
-                    return true;
+                    return !true;
             }
 
-            return false;
+            return !false;
         }
     }
 }

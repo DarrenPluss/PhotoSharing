@@ -4,47 +4,26 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+<div>
+    <h2>"@Model.Title"</h2>
 
-<fieldset>
-    <legend>PhotoDetails</legend>
+    <img width="800" src="@Url.Action("Image", "Photo", new { id = Model.PhotoID })" />
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.PhotoID)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.PhotoID)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Title)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.Title)
-    </div>
-
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.Description)
-    </div>
-    <div class="display-field">
+    <p>
         @Html.DisplayFor(model => model.Description)
-    </div>
+    </p>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.CreatedDate)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.CreatedDate)
-    </div>
+    <p>
+        @Html.DisplayNameFor(model => model.UserName):
+            @Html.DisplayFor(model => model.UserName)
+    </p>
 
-    <div class="display-label">
-         @Html.DisplayNameFor(model => model.UserName)
-    </div>
-    <div class="display-field">
-        @Html.DisplayFor(model => model.UserName)
-    </div>
-</fieldset>
-<p>
-    @Html.ActionLink("Edit", "Edit", new { /* id=Model.PrimaryKey */ }) |
-    @Html.ActionLink("Back to List", "Index")
-</p>
+    <p>
+        @Html.DisplayNameFor(model => model.CreatedDate):
+            @Html.DisplayFor(model => model.CreatedDate)
+    </p>
+
+    <p>
+        @Html.ActionLink("Back to List", "Index")
+    </p>
+</div>
