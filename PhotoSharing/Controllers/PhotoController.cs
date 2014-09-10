@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using MvcCodeRouting.Web.Mvc;
 using PhotoSharing.Ef;
 using PhotoSharing.Filters;
 using PhotoSharing.Model;
@@ -8,10 +9,10 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
-namespace PhotoSharingApplication.Controllers
-{    
+namespace PhotoSharing.Controllers
+{   
     public class PhotoController : Controller
-    {
+    {    
         private IPhotoRepository _rep; // = new EfRepository();
 
         public PhotoController(IPhotoRepository rep)
@@ -27,7 +28,7 @@ namespace PhotoSharingApplication.Controllers
         // GET: /Photo/
 
         public ActionResult Index()
-        {
+        {            
             return View(_rep.GetPhotos()
                 .Select(p => Mapper.Map<PhotoDisplayModel>(p)).ToList());
         }
@@ -35,6 +36,7 @@ namespace PhotoSharingApplication.Controllers
         //
         // GET: /Photo/Details/5
 
+        [CustomRoute("~/photo/{id}")]
         public ActionResult Details(int id = 0)
         {
             PhotoDetails photo = _rep.PhotoDetailsById(id);
@@ -56,6 +58,8 @@ namespace PhotoSharingApplication.Controllers
             return File(photo.PhotoFile, photo.ImageMimeType);
         }
 
+
+        [CustomRoute("~/photo/{title}")]
         public ActionResult Title(string title)
         {
             var photos = _rep.PhotosByTitle(title)

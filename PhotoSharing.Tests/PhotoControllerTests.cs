@@ -3,7 +3,7 @@ using Moq;
 using PhotoSharing.App_Start;
 using PhotoSharing.Model;
 using PhotoSharing.Models;
-using PhotoSharingApplication.Controllers;
+using PhotoSharing.Controllers;
 using System.Collections.Generic;
 using System.Web.Mvc;
 

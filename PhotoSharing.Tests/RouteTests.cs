@@ -1,7 +1,7 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System.Web.Routing;
 using MvcRouteTester;
-using PhotoSharingApplication.Controllers;
+using PhotoSharing.Controllers;
 
 namespace PhotoSharing.Tests
 {

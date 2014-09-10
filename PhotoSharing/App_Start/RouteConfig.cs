@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using MvcCodeRouting;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -13,21 +10,10 @@ namespace PhotoSharing
         {
             routes.IgnoreRoute("{resource}.axd/{*pathInfo}");
 
-            routes.MapRoute("Id",
-                "photo/{id}",
-                new { controller = "Photo", action = "Details" },
-                new { id = @"[0-9]+"}
-                );
-            
-            routes.MapRoute("Title",
-                "photo/{title}",
-                new { controller = "Photo", action = "Title" });
-
-            routes.MapRoute(
-                name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Home", action = "Index", id = UrlParameter.Optional }
-            );
+            routes.MapCodeRoutes(
+            rootController: typeof(Controllers.HomeController),
+            settings: new CodeRoutingSettings { UseImplicitIdToken = true }
+        );
         }
     }
 }
