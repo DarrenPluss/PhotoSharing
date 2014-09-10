@@ -13,5 +13,7 @@ namespace PhotoSharing.Model
         void DeletePhoto(int id);
         void AddOrUpdatePhoto(Photo photo);
         void SaveChanges();
+
+        List<PhotoDetails> Search(string keyword);
     }
 }

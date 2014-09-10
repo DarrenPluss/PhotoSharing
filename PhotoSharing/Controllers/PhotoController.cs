@@ -5,6 +5,7 @@ using PhotoSharing.Filters;
 using PhotoSharing.Model;
 using PhotoSharing.Models;
 using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -229,6 +230,18 @@ namespace PhotoSharing.Controllers
             _rep.DeletePhoto(id);
             _rep.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+        [CustomRoute("~/search")]  
+        public ActionResult Search(string keyword)
+        {
+            if (keyword == "")
+                return View(new List<PhotoDisplayModel>());      
+
+            var photos = _rep.Search(keyword)
+                .Select(p => Mapper.Map<PhotoDisplayModel>(p)).ToList(); 
+
+            return View(photos);
         }
 
         protected override void Dispose(bool disposing)

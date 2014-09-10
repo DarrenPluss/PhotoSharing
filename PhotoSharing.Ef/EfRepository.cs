@@ -103,5 +103,23 @@ namespace PhotoSharing.Ef
         {
             return _db.Photos.FirstOrDefault(p => p.PhotoID == id);
         }
+
+
+        List<PhotoDetails> IPhotoRepository.Search(string keyword)
+        {
+            var photos = from p in _db.Photos
+                         where p.Title.Contains(keyword) ||
+                         p.Description.Contains(keyword)
+                         select new PhotoDetails
+                         {
+                             PhotoID = p.PhotoID,
+                             Title = p.Title,
+                             Description = p.Description,
+                             UserName = p.UserName,
+                             CreatedDate = p.CreatedDate
+                         };
+
+            return photos.ToList();
+        }
     }
 }

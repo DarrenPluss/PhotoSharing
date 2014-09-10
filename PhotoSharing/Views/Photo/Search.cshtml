@@ -1,0 +1,22 @@
+﻿@model IEnumerable<PhotoSharing.Models.PhotoDisplayModel>
+
+@{
+    ViewBag.Title = "Search";
+}
+
+<h2>Search Results</h2>
+
+@using (Html.BeginForm())
+{
+    <input type="text" name="keyword" id="keyword" />
+    <input type="submit" value="Search" />
+}
+
+<div id="results">
+    <ul>
+        @foreach (var item in Model)
+        {
+            @Html.Partial("_PhotoItem", item)
+        }            
+    </ul>
+</div>
