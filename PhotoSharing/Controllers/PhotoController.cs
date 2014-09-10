@@ -12,7 +12,16 @@ namespace PhotoSharingApplication.Controllers
 {    
     public class PhotoController : Controller
     {
-        private IPhotoRepository _rep = new EfRepository();
+        private IPhotoRepository _rep; // = new EfRepository();
+
+        public PhotoController(IPhotoRepository rep)
+        {
+            _rep = rep;
+        }
+
+        public PhotoController()
+            : this(new EfRepository())
+        { }
 
         //
         // GET: /Photo/
@@ -54,6 +63,9 @@ namespace PhotoSharingApplication.Controllers
 
             if (photos.Count == 1)
                 return View("Details", photos.First());
+
+            if (photos.Count == 0)
+                return RedirectToAction("Search", "Photo", new { keyword = title });
 
             return View("Index", photos);
         }
