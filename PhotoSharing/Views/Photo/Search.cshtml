@@ -13,10 +13,5 @@
 }
 
 <div id="results">
-    <ul>
-        @foreach (var item in Model)
-        {
-            @Html.Partial("_PhotoItem", item)
-        }            
-    </ul>
+    @Html.Partial("_Gallery", Model)
 </div>

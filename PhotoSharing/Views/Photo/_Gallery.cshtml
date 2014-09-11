@@ -1,0 +1,8 @@
+﻿@model IEnumerable<PhotoSharing.Models.PhotoDisplayModel>
+
+<ul class="photoList">
+    @foreach (var item in Model)
+    {
+        <li>@Html.Partial("_PhotoItem",item)</li>
+    }
+</ul>

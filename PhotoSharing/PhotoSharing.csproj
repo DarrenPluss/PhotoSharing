@@ -207,6 +207,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Data\Elmah.Errors\ElmahErrors.txt" />
+    <Content Include="Content\StyleSheet1.css" />
     <Content Include="Content\themes\base\images\ui-bg_flat_0_aaaaaa_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_flat_75_ffffff_40x100.png" />
     <Content Include="Content\themes\base\images\ui-bg_glass_55_fbf9ee_1x400.png" />
@@ -264,6 +265,7 @@
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <None Include="Scripts\jquery-1.7.1.intellisense.js" />
+    <Content Include="Index.htm" />
     <Content Include="Photos\blackberries.JPG" />
     <Content Include="Photos\coastalview.jpg" />
     <Content Include="Photos\flower.JPG" />
@@ -338,6 +340,7 @@
     <Content Include="Views\Photo\EditAdmin.cshtml" />
     <Content Include="Views\Photo\_PhotoItem.cshtml" />
     <Content Include="Views\Photo\Search.cshtml" />
+    <Content Include="Views\Photo\_Gallery.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
