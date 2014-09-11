@@ -1,5 +1,8 @@
 ﻿@model PhotoSharing.Models.PhotoDisplayModel
 <a href="@Url.Action("Details", "Photo", new { id = Model.PhotoID })" title="@Model.Title">
-    <img alt="@Model.Description" src="@Url.Action("Image", "Photo", new { id = Model.PhotoID })" />
+    <img class="lazy" alt="@Model.Description" data-original="@Url.Action("Image", "Photo", new { id = Model.PhotoID,size='t' })" />
+    <noscript>
+        <img alt="@Model.Description" src="@Url.Action("Image", "Photo", new { id = Model.PhotoID,size='t' })" />
+    </noscript>
 </a>
 

@@ -1,4 +1,7 @@
 ﻿using AutoMapper;
+using ImageProcessor;
+using ImageProcessor.Imaging;
+using ImageProcessor.Imaging.Formats;
 using MvcCodeRouting.Web.Mvc;
 using PhotoSharing.Ef;
 using PhotoSharing.Filters;
@@ -6,6 +9,9 @@ using PhotoSharing.Model;
 using PhotoSharing.Models;
 using System;
 using System.Collections.Generic;
+using System.Drawing;
+using System.Drawing.Imaging;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -49,7 +55,8 @@ namespace PhotoSharing.Controllers
         }
 
         [OutputCache(CacheProfile="Images")]
-        public ActionResult Image(int id)
+        [CustomRoute("~/image/{id}/{size}")]
+        public ActionResult Image(int id,[FromRoute] char size='o')
         {
             PhotoImage photo = _rep.PhotoImageById(id);
             if (photo == null)
@@ -57,9 +64,31 @@ namespace PhotoSharing.Controllers
                 return HttpNotFound();
             }
 
-            return File(photo.PhotoFile, photo.ImageMimeType);
+            switch (size)
+            {
+                case 't':
+                    return File(GenerateThumbnail(photo.PhotoFile),photo.ImageMimeType);
+                default:
+                    return File(photo.PhotoFile, photo.ImageMimeType);
+            }            
         }
+        
+        private byte[] GenerateThumbnail(byte[] image)
+        {
+            using (MemoryStream inStream = new MemoryStream(image), outStream = new MemoryStream())
+            {
+                using (var fac = new ImageFactory())
+                {
+                    fac.Load(inStream)
+                        .Resize(new ResizeLayer(new Size(180, 180), ResizeMode.Max))
+                        .Format(new JpegFormat())
+                        .Quality(90)
+                        .Save(outStream);
+                }
 
+                return outStream.ToArray();
+            }
+        }
 
         [CustomRoute("~/photo/{title}")]
         public ActionResult Title(string title)
