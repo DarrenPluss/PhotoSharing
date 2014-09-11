@@ -346,7 +346,6 @@
     <Content Include="Views\Photo\Search.cshtml" />
     <Content Include="Views\Photo\_Gallery.cshtml" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
