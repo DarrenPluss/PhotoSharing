@@ -6,12 +6,22 @@
 
 <h2>Search Results</h2>
 
-@using (Html.BeginForm())
+@using (Ajax.BeginForm(new AjaxOptions { UpdateTargetId = "results",
+ LoadingElementId="wait", LoadingElementDuration=500,
+ InsertionMode= InsertionMode.InsertBefore}))
 {
     <input type="text" name="keyword" id="keyword" />
     <input type="submit" value="Search" />
 }
 
 <div id="results">
+    <div id="wait" style="display:none">
+    <p>Please wait, searching....</p>
+</div>
+
     @Html.Partial("_Gallery", Model)
 </div>
+
+@section scripts {
+    <script src="~/Scripts/jquery.unobtrusive-ajax.js"></script>
+}

@@ -48,6 +48,7 @@ namespace PhotoSharing.Controllers
             return View(Mapper.Map<PhotoDisplayModel>(photo));
         }
 
+        [OutputCache(CacheProfile="Images")]
         public ActionResult Image(int id)
         {
             PhotoImage photo = _rep.PhotoImageById(id);
@@ -234,14 +235,21 @@ namespace PhotoSharing.Controllers
 
         [CustomRoute("~/search")]  
         public ActionResult Search(string keyword)
-        {
-            if (keyword == "")
-                return View(new List<PhotoDisplayModel>());      
-
-            var photos = _rep.Search(keyword)
+        {         
+            List<PhotoDisplayModel> results;
+            
+            if (string.IsNullOrWhiteSpace(keyword))
+                results = new List<PhotoDisplayModel>();
+            else
+                results = _rep.Search(keyword)
                 .Select(p => Mapper.Map<PhotoDisplayModel>(p)).ToList(); 
+            
+            if (Request.IsAjaxRequest())
+            {
+                return PartialView("_Gallery", results);
+            }   
 
-            return View(photos);
+            return View(results);
         }
 
         protected override void Dispose(bool disposing)
