@@ -141,7 +141,7 @@ namespace PhotoSharing.Controllers
             return View(photo);
         }
         */
-        [Authorize(Roles = "Publishers")]
+
         public ActionResult Create()
         {
             return View();
@@ -150,7 +150,7 @@ namespace PhotoSharing.Controllers
 
         //
         // POST: /Photo/Create
-        [Authorize(Roles="Publishers")]
+
         [HttpPost]
         public ActionResult Create(PhotoEditModel photo, HttpPostedFileBase image)
         {
